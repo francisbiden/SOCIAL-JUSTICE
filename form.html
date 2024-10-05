@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Plan</title>
+  <link rel="stylesheet" href="./dist/css/style.css">
+</head>
+<body>
+  <div class="form-container">
+    <h2>Choose Your Plan</h2>
+    <form id="choosePlanForm" action="/submit-plan" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required>
+      </div>
+
+      <div class="form-group">
+        <label for="plan">Payment Plan:</label>
+        <select id="plan" name="payment_plan" required>
+          <option value="basic">Basic</option>
+          <option value="premium">Premium</option>
+          <option value="ultimate">Ultimate</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="course">Choose Course:</label>
+        <select id="course" name="course" required>
+          <option value="course1">Cyber security</option>
+          <option value="course2">Data scientist</option>
+          <option value="course3">UI/UX Designer</option>
+          <option value="course4">Fullstack Developer</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Choose Plan</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Optional: You can add AJAX to submit the form without reloading the page
+
+    // Example of using AJAX (optional)
+    const form = document.getElementById('choosePlanForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      fetch('/submit-plan', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.get('name'),
+          phone: formData.get('phone'),
+          payment_plan: formData.get('payment_plan'),
+          course: formData.get('course'),
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(response => response.text())
+      .then(data => {
+        alert(data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>

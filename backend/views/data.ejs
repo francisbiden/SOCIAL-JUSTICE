@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>  ID </th>
+            <th>  Name </th>
+            <th> Phone </th>
+            <th> Payment Plan </th>
+            <th> Course </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% results.forEach(row =>{%>
+            <tr>
+                <td> <%= row.id %> </td>
+                <td> <%= row.name %> </td>
+                <td> <%= row.phone %> </td>
+                <td> <%= row.payment_plan %> </td>
+                <td> <%= row.course %> </td>
+            </tr>
+        <%});%>
+    </tbody>
+</table>
